@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Ajax search</title>
+<script>
+ function searching(str)
+ {
+	 if(str.length==0)
+	 {
+		 document.getElementById("txt").innerHTML="";
+		 return;
+	 }
+		 else
+		 {
+			 var xmlhttp = new XMLHttpRequest();
+			 xmlhttp.onreadystatechange = function()
+			 {
+				 if(xmlhttp.readyState == 4 && xmlhttp.status                  == 200)
+				 {
+					document.getElementById("txt").innerHTML=                     xmlhttp.responseText;
+					 
+				 }
+			 }
+			 xmlhttp.open("GET", "gethint.php?q="+str,true);
+			 xmlhttp.send();
+			 
+		 }
+		 
+	 
+ }
+</script>
+  
+
+
+
+
+</head>
+
+<body>
+<form>
+ First Name: <input type="text" onkeyup="searching(this.value)" />
+ <p><br/><span id="txt"></span></p>
+</form>
+</body>
+</html>
